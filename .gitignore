@@ -1,0 +1,11 @@
+# Created by venv; see https://docs.python.org/3/library/venv.html
+
+# 가상환경 폴더 제외
+venv/
+
+# 파이썬 캐시 파일 제외
+__pycache__/
+*.pyc
+
+# 환경변수 파일 제외 (나중에 API 키 숨길 때 사용)
+.env
