@@ -1,9 +1,10 @@
 from fastapi import FastAPI
-from routers import ai_router
+from routers import inspect_router
 
 app = FastAPI()
 
-app.include_router(ai_router.router)
+# 2. inspect_router를 등록합니다. prefix는 "/api"로 설정합니다.
+app.include_router(inspect_router.router, prefix="/api")
 
 
 @app.get("/")
