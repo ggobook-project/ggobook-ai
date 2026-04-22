@@ -1,10 +1,16 @@
+import uvicorn
 from fastapi import FastAPI
 from routers import inspect_router
+from routers import relay_router  # 🌟 1. 새로 만든 릴레이 라우터를 불러옵니다.
 
-app = FastAPI()
+app = FastAPI(title="GGoBook AI Server")
 
-# 2. inspect_router를 등록합니다. prefix는 "/api"로 설정합니다.
+# 기존 inspect_router 등록
 app.include_router(inspect_router.router, prefix="/api")
+
+# 🌟 2. 릴레이 라우터 등록
+# (이전에 relay_router.py 내부에서 prefix="/api/relay"로 설정해두었으므로 그냥 연결만 하면 됩니다)
+app.include_router(relay_router.router)
 
 
 @app.get("/")
@@ -15,3 +21,7 @@ def read_root():
 @app.get("/ai/hello")
 def say_hello():
     return {"message": "안녕하세요, 꼬북 AI입니다!"}
+
+
+if __name__ == "__main__":
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
