@@ -86,8 +86,8 @@ def chat(messages: list[ChatMessage], user_id: Optional[int] = None, token: Opti
         if is_recommend_question(last_message):
             contents_text = get_contents()
             if contents_text:
-                if user_id:
-                    read_text = get_read_contents(user_id)
+                if token:
+                    read_text = get_read_contents(token)
                     print(f"읽은 작품: {read_text}")
                     if read_text:
                         contents_prompt = f"""
