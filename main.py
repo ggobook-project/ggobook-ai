@@ -6,6 +6,7 @@ from routers import relay_router
 from routers import novel_format_router
 from routers import chatbot_router
 from routers import parallel_universe_router
+from routers import content_chatbot_router
 import os
 
 app = FastAPI(title="GGoBook AI Server")
@@ -33,6 +34,9 @@ app.include_router(chatbot_router.router, prefix="/api")
 
 # 평행우주 라우터 등록
 app.include_router(parallel_universe_router.router, prefix="/api")
+
+# 작품 전용 챗봇 라우터 등록
+app.include_router(content_chatbot_router.router, prefix="/api")
 
 @app.get("/")
 def read_root():
