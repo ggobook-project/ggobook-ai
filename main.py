@@ -6,12 +6,13 @@ from routers import relay_router
 from routers import novel_format_router
 from routers import chatbot_router
 from routers import parallel_universe_router
+import os
 
 app = FastAPI(title="GGoBook AI Server")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=[os.getenv("ALLOWED_ORIGINS", "http://localhost:5173")],
     # 브라우저 보안정책으로 쿠키나 인증 정보를 안보내기 위해 사용
     # true로 설정하면 '쿠키랑 인증 정보도 같이 보내도 돼'라고 허용하는 것
     # 현재 꼬북이 챗봇을 로그인, 비로그인 나눠서 사용하는 기능은 안만들어서 

@@ -8,6 +8,8 @@ from typing import Optional
 # .env 파일에서 환경변수 불어옴
 load_dotenv()
 
+BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:8080")
+
 SYSTEM_PROMPT = """당신은 꼬북(GGoBook) 웹툰·웹소설 플랫폼의 친절한 AI 도우미 '꼬북이'입니다.
 
 [플랫폼 안내]
@@ -36,7 +38,7 @@ except Exception as e:
 
 def get_contents():
     try:
-        response = httpx.get("http://localhost:8080/api/contents/?size=20")
+        response = httpx.get(f"{BACKEND_URL}/api/contents/?size=20")
         data = response.json()
         contents = data.get("content", [])
         contents_text = "\n".join([
@@ -50,7 +52,7 @@ def get_contents():
 
 def get_read_contents(token: str):
     try:
-        response = httpx.get(f"http://localhost:8080/api/readings/contents",
+        response = httpx.get(f"{BACKEND_URL}/api/readings/contents",
                              headers={"Authorization": f"Bearer {token}"})
         data = response.json()
         if not data:
