@@ -20,7 +20,7 @@ class InspectService:
         prompt = self.prompt_util.get_summary_prompt(text)
         try:
             response = await self.client.aio.models.generate_content(
-                model="gemini-3.1-flash-lite-preview", contents=prompt
+                model="gemini-2.0-flash-lite", contents=prompt
             )
             return response.text.strip()
         except Exception as e:
@@ -32,7 +32,7 @@ class InspectService:
         prompt = self.prompt_util.get_moderate_prompt(text)
         try:
             response = await self.client.aio.models.generate_content(
-                model="gemini-3.1-flash-lite-preview", contents=prompt
+                model="gemini-2.0-flash-lite", contents=prompt
             )
             return response.text.strip()
         except Exception as e:
@@ -45,7 +45,7 @@ class InspectService:
         prompt = self.prompt_util.get_relay_moderate_prompt(text)
         try:
             response = await self.client.aio.models.generate_content(
-                model="gemini-3.1-flash-lite-preview", contents=prompt
+                model="gemini-2.0-flash-lite", contents=prompt
             )
             return response.text.strip()
         except Exception as e:
